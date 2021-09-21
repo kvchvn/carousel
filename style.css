@@ -1,0 +1,62 @@
+.carousel {
+  /* overflow: hidden; */
+  position: relative;
+  margin-top: 100px;
+  margin-left: 100px;
+  width: 200px;
+  height: 200px;
+}
+
+.slides {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: -200px;
+}
+
+.slide {
+  display: inline-block;
+  padding: 4px;
+  width: 192px;
+  height: 192px;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: top;
+  font-size: 32px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.slide-1 {
+  background-color: brown;
+}
+
+.slide-2 {
+  background-color: cornflowerblue;
+}
+
+.slide-3 {
+  background-color: darkgoldenrod;
+}
+
+.slide-4 {
+  background-color: chartreuse;
+}
+
+.slide-5 {
+  background-color: darkgreen;
+}
+
+.button {
+  margin-top: 30px;
+  width: 90px;
+  height: 50px;
+  font-size: 32px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.button-left {
+  margin-left: 105px;
+}
