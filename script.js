@@ -1,37 +1,40 @@
-let carousel = document.getElementById('slides');
-let slides = carousel.querySelectorAll('.slide');
-let slidesLength = slides.length;
+let carousel = document.getElementById('carousel');
+let slideList = document.getElementById('slides');
+let slideItem = carousel.querySelectorAll('.slide');
+let slidesLength = slideItem.length;
 let activeSlide = 1;
 
-let first = slides[0];
-let last = slides[slides.length - 1];
+let firstItem = slideItem[0];
+let lastItem = slideItem[slidesLength - 1];
 
-first.before(last.cloneNode(true));
-last.after(first.cloneNode(true));
+firstItem.before(lastItem.cloneNode(true));
+lastItem.after(firstItem.cloneNode(true));
 
-let buttons = document.querySelectorAll('.button');
+slideList.style.left = `${-200 * activeSlide}px`;
 
-function swipe() {
-  let cycle;
-  let delta;
-  let slidesStyles = getComputedStyle(carousel);
+let buttonLeft = document.getElementById('button-left');
+let buttonRight = document.getElementById('button-right');
 
-  if ((!carousel.matches('.animated'))) {
-    cycle = false;
-    delta = (carousel.id === 'prev') ? -1 : 1;
-  
-    carousel.style.left += `-${200 * delta}px`;
-    activeSlide += delta;
+buttonLeft.addEventListener('click', () => {swipe('left')});
+buttonRight.addEventListener('click', () => {swipe('right')});
 
-    cycle = (activeSlide === 0 || current > slidesLength);
-
-    if (cycle) {
-      activeSlide = (activeSlide === 0) ? slidesLength : 1;
-      carousel.style.left = `${-200 * current}px`;
-    }
-  }
-
-  
+function swipe(direction) {
+   if (direction === 'left' && activeSlide > 0) {
+     activeSlide--;
+   } else if (direction === 'right' && activeSlide <= slidesLength) {
+     activeSlide++;
+   }
+   slideList.style.left = `${-200 * activeSlide}px`;
+   slideList.style.transition = 'left 0.25s';
 }
+
+slideList.addEventListener('transitionend', jump);
+
+function jump() {
+  activeSlide = (activeSlide === slidesLength + 1) ? 1 : activeSlide;
+  activeSlide = (activeSlide === 0) ? slidesLength : activeSlide;
+  slideList.style.transition = 'none';
+  slideList.style.left = `${-200 * activeSlide}px`; 
+  }
 
 
