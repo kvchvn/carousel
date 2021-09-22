@@ -2,7 +2,11 @@ let carousel = document.getElementById('carousel');
 let slideList = document.getElementById('slides');
 let slideItem = carousel.querySelectorAll('.slide');
 let slidesLength = slideItem.length;
-let activeSlide = 1;
+let activeSlide = random(1, slidesLength);
+
+function random(first, last) {
+  return Math.round(first + Math.random() * (last - first));
+}
 
 let firstItem = slideItem[0];
 let lastItem = slideItem[slidesLength - 1];
